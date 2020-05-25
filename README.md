@@ -126,7 +126,7 @@ delta values obtained for the different models can be found in the file DATA/hum
  
  ## Deepseech
  We use the 0.4.1 version of Deepspeech (https://github.com/mozilla/DeepSpeech/releases?after=v0.5.0-alpha.3). We use the pretrained English model provided with the release. 
- To extract Deepspeech representation of the stimuli, download the 0.4.1 code of Deepspeech (follow installation procedures given on the website provided), along with the pretrained model. Then add to the main folder the script `Deepspeech_modif.py`. Then move to Deepspeech main folder and do:
+ To extract Deepspeech representation of the stimuli, download the 0.4.1 code of Deepspeech (follow installation procedures given on the website provided), along with the pretrained model (checkpoint file). Add the script `Deepspeech_modif.py` to the main folder. Then move to Deepspeech main folder and do:
  `python Deepspeech_modif.py $input_folder$ $checkpoint_dir$ $layer_wanted$ $softmax_wanted$ $save_folder$ 0.02 0.032 True False`
   
   `$input_folder$` contains the wavfiles (2017 Zerospeech stimuli) you want to transform. `$checkpoint_dir$` is where you put the pretrained model. `$layer_wanted$` 
