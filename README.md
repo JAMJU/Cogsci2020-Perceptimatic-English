@@ -151,7 +151,7 @@ with $Type$ equal to FisherMono, FisherTri or BabelMulti.
 
 We use the kaldi toolkit to extract MFCCs and apply the same VTLN than in [1] (the vtln-mfccs can be provided on demand, contact juliette.millet@cri-paris.org), then we  extract the posteriorgrams from the English model from [1] we follow the instructions of https://github.com/geomphon/CogSci-2019-Unsupervised-speech-and-human-perception
 
-## Articulation features
+## Articulatory features
 
 We used the model provided by [4] (https://github.com/bootphon/articulatory_inversion, the model used is in Training/saved_models_example/Single-corpus-model.txt). We follow the instructions of the section 'Perform inversion' of this github, and apply the model on the 2017 ZeroSpeech stimuli. 
 
