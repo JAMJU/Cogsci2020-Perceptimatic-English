@@ -90,7 +90,7 @@ Once your features are in the right format, you need to put them in a global fol
 
 `python script_get_file_distance.py M/ DATA/all_triplets.csv $file_delta.csv$ $distance$ DATA/english/all_aligned_clean_english.csv DATA/french/all_aligned_clean_french.csv False`
 
-`$distance$` can be 'euclidean', 'kl' or 'cosine': it is the distance you want to use for the DTW. This can adapted if your representations are not numerical.
+`$distance$` can be 'euclidean', 'kl' (symmetrised Kullblack Leibler divergence) or 'cosine': it is the distance you want to use for the DTW. This can adapted if your representations are not numerical.
 
 This file creates a csv file with the delta distances of your model for each triplet ($file_delta.csv$). The script also print the ABX accuracies over the dataset (for English stimuli and French stimuli).
 
@@ -151,5 +151,9 @@ with $Type$ equal to FisherMono, FisherTri or BabelMulti.
 
 We use the kaldi toolkit to extract MFCCs and apply the same VTLN than in [1] (the vtln-mfccs can be provided on demand, contact juliette.millet@cri-paris.org), then we  extract the posteriorgrams from the English model from [1] we follow the instructions of https://github.com/geomphon/CogSci-2019-Unsupervised-speech-and-human-perception
 
+## Notes on the distances used
+For all the representations presented here, we use the cosine distance to compute delta values, except for the DPGMM, for which we use kl (symmetrised Kullblack Leibler divergence)
+
 [1] Millet, J., Jurov, N., & Dunbar, E. (2019, July). Comparing unsupervised speech learning directly to human performance in speech perception.
 [2] Fer, R., Matějka, P., Grézl, F., Plchot, O., Veselý, K., & Černocký, J. H. (2017). Multilingually trained bottleneck features in spoken language recognition. Computer Speech & Language, 46, 252-267.
+[3] Millet, J., & Dunbar, E. (2020). The Perceptimatic English Benchmark for Speech Perception Models. arXiv preprint arXiv:2005.03418. (Accepted to Cogsci Conference 2020)
