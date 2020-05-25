@@ -1,5 +1,5 @@
 # Cogsci2020-Perceptimatic-English
-
+This github contains the dataset and code of the experiments described in [3]. Please cite the paper if you use our dataset/code. The dataset used is the English part of the Perceptimatic dataset (only English participants results).
 ### General environment required
 * python 3.6/7
 * numpy
@@ -9,7 +9,7 @@
 
 # Dataset
 ## Cleaned stimuli
-We provide the cleaned stimuli on the from of onset and offset for the 2017 Zerospeech one second French and English stimuli. 
+We provide the stimuli we used on the form of onset and offset for the 2017 Zerospeech one second across speaker French and English stimuli (the wav files can be downloaded here: https://download.zerospeech.com/). 
 The onset, offset and labels of the cleaned French triphones are in DATA/all_aligned_clean_french.csv, the English are in DATA/all_aligned_clean_english.csv. The files have the following columns:
 
 | index	| #file |	onset|	offset |	#phone	| prev-phone | next-phone	| speaker|
@@ -92,13 +92,16 @@ Once your features are in the right format, you need to put them in a global fol
 
 `$distance$` can be 'euclidean', 'kl' or 'cosine': it is the distance you want to use for the DTW. This can adapted if your representations are not numerical.
 
-This file creates a csv file with the delta distances of your model for each triplet ($file_delta.csv$). The script also print the ABX accuracies over the Native Perceptimatic dataset (for English and French).
+This file creates a csv file with the delta distances of your model for each triplet ($file_delta.csv$). The script also print the ABX accuracies over the dataset (for English stimuli and French stimuli).
 
 In order to perform the rest of the analysis easily, you can add your model delta values to our existing file containing human results, and all the model we evaluated 's delta values. To do that you need to do:
 
 `python concatenate_results $file_delta.csv$ $name_model$ DATA/humans_and_models.csv $file_all.csv$`
 
 `$name_model$` if the name of the new column you add to the original file containing human results. You obtain a file (`$file_all.csv$`) containing all the data in humans_and_models.csv and the delta values you computed.
+
+## Comparing your model with humans results (only English speaking participants) and other models.
+
 
 # Extracting features used in the paper
 delta values obtained for the different models can be found in the file DATA/humans_and_models.csv, one column per model with the codenames given in the paper.
