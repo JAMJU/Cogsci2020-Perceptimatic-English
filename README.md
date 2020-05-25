@@ -151,9 +151,14 @@ with $Type$ equal to FisherMono, FisherTri or BabelMulti.
 
 We use the kaldi toolkit to extract MFCCs and apply the same VTLN than in [1] (the vtln-mfccs can be provided on demand, contact juliette.millet@cri-paris.org), then we  extract the posteriorgrams from the English model from [1] we follow the instructions of https://github.com/geomphon/CogSci-2019-Unsupervised-speech-and-human-perception
 
+## Articulation features
+
+We used the model provided by [4] (https://github.com/bootphon/articulatory_inversion, the model used is in Training/saved_models_example/Single-corpus-model.txt). We follow the instructions of the section 'Perform inversion' of this github, and apply the model on the 2017 ZeroSpeech stimuli. 
+
 ## Notes on the distances used
 For all the representations presented here, we use the cosine distance to compute delta values, except for the DPGMM, for which we use kl (symmetrised Kullblack Leibler divergence)
 
 [1] Millet, J., Jurov, N., & Dunbar, E. (2019, July). Comparing unsupervised speech learning directly to human performance in speech perception.
 [2] Fer, R., Matějka, P., Grézl, F., Plchot, O., Veselý, K., & Černocký, J. H. (2017). Multilingually trained bottleneck features in spoken language recognition. Computer Speech & Language, 46, 252-267.
 [3] Millet, J., & Dunbar, E. (2020). The Perceptimatic English Benchmark for Speech Perception Models. arXiv preprint arXiv:2005.03418. (Accepted to Cogsci Conference 2020)
+[4] Parrot, M., Millet, J., & Dunbar, E. (2019). Independent and automatic evaluation of acoustic-to-articulatory inversion models. arXiv, arXiv-1911.
