@@ -125,8 +125,15 @@ delta values obtained for the different models can be found in the file DATA/hum
  But if you want to extract the features yourself in order to recompute the delta values, you can follow these instructions:
  
  ## Deepseech
- 
- 
+ We use the 0.4.1 version of Deepspeech (https://github.com/mozilla/DeepSpeech/releases?after=v0.5.0-alpha.3). We use the pretrained English model provided with the release. 
+ To extract Deepspeech representation of the stimuli, download the 0.4.1 code of Deepspeech (follow installation procedures given on the website provided), along with the pretrained model. Then add to the main folder the script `Deepspeech_modif.py`. Then move to Deepspeech main folder and do:
+ `python Deepspeech_modif.py $input_folder$ $checkpoint_dir$ $layer_wanted$ $softmax_wanted$ $save_folder$ 0.02 0.032 True False`
+  
+  `$input_folder$` contains the wavfiles (2017 Zerospeech stimuli) you want to transform. `$checkpoint_dir$` is where you put the pretrained model. `$layer_wanted$` 
+  can be either layer_6 or layer_5, or output_rnn, and layer_6_resh by default (correpond to the different layers of the models, in the paper we use layer_5).
+   `$softmax_wanted$` needs to be True if you want a softmax layer applied on top of your representations, False otherwise (in the paper we use False). 
+   `$save_folder$` s the folder where to put Deepspeech representations (in the format described in the section 'Extracting features from your model' above).
+  
  
  ## MFCCs
 The MFCCs used in the paper were extracted with Kaldi toolkit, using the default paramters, adding the first and second derivatives for a total of 39 dimensions, and we applymean-variance normalization over a moving 300 milliseconds window. We provide the extracted MFCCs on demand on demand (contact juliette.millet@cri-paris.org)
@@ -143,3 +150,6 @@ with $Type$ equal to FisherMono, FisherTri or BabelMulti.
 ## DPGMM
 
 We use the kaldi toolkit to extract MFCCs and apply the same VTLN than in [1] (the vtln-mfccs can be provided on demand, contact juliette.millet@cri-paris.org), then we  extract the posteriorgrams from the English model from [1] we follow the instructions of https://github.com/geomphon/CogSci-2019-Unsupervised-speech-and-human-perception
+
+[1] Millet, J., Jurov, N., & Dunbar, E. (2019, July). Comparing unsupervised speech learning directly to human performance in speech perception.
+[2] Fer, R., Matějka, P., Grézl, F., Plchot, O., Veselý, K., & Černocký, J. H. (2017). Multilingually trained bottleneck features in spoken language recognition. Computer Speech & Language, 46, 252-267.

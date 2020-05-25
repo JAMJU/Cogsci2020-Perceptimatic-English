@@ -3,7 +3,8 @@
 """
     Created january 2020
     by Juliette MILLET
-    script to compute a probit model based on output file with one line = one stimuli-individua and this time with a sampling of answers to have a equilibrated probit model
+    script to fit a probit model based on output file with one line = one stimuli-individual and this time with a
+    sampling of answers to have a equilibrated probit model. We perform multiple subsampling.
 """
 
 import pandas as pd
@@ -42,12 +43,11 @@ def sample_lines(dico_line_files):
 
 
 def model_probit_binarized(data_file,  model, lines_sampled): # for the model, you have to add the +
-    #print(lines_sampled)
+
     data = pd.read_csv(data_file, sep=',', encoding='utf-8')
-    #print(data)
+
     data = data.iloc[lines_sampled]
-    #print(data)
-    #print(data)
+
     data['binarized_answer']  = (data['binarized_answer']+ 1.)/2 # we transform -1 1 into 0 1
 
 
@@ -58,8 +58,11 @@ def model_probit_binarized(data_file,  model, lines_sampled): # for the model, y
 
 def iteration_model(filename, nb_it, outfile):
     dico_lines = get_dico_corres_file(filename)
+    f = open(filename, 'r')
+    ind = f.readline().replace('\n', '').split(',')
+    f.close()
 
-    list_names = ['articulation', 'babelmulti', 'fishermono', 'fishertri', 'deepspeech', 'dpgmm', 'mfccs']
+    list_names = ind[ind.index('language_code') + 1:]#['articulation', 'babelmulti', 'fishermono', 'fishertri', 'deepspeech', 'dpgmm', 'mfccs']
     out = open(outfile, 'w')
     out.write('nb,' + ','.join(list_names) + '\n')
     for i in range(nb_it):
