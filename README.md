@@ -102,6 +102,23 @@ In order to perform the rest of the analysis easily, you can add your model delt
 
 ## Comparing your model with humans results (only English speaking participants) and other models.
 
+If you want to obtain a (bootstrap) confidence interval of the log-likelihood of your model over the humans results (along with confidence intervals of the log-likelihood differences with other models), you first need to do a bootstrap (and fit probit models over human results). To do that do:
+`python iteration_probit_model.py $file_all.csv$ $file_log.csv$ $nb_it$`
+with $file_log$ the file you will obtain (one row= one sampling, one column= one model, it contains the log-likelihoods for each sampling for all the evaluated models). $nb_it$ is the number of subsampling you want to perform.
+
+To obtain average log-likelihoods along with 95% intervals do:
+
+`python compute_log_interval.py $file_log.csv$ $final_average_log.csv`
+
+$final_average_log.csv$ will contain one row per model, each row with the values: name of the model, average log-likeliood, min 95% interval, max 95% interval.
+
+To obtain average log-likelihood **differences** along with 95% intervals, do:
+
+`python compute_log_interval.py $file_log.csv$ $final_average_diff_log.csv`
+
+$final_average_diff_log.csv$ will contain one row per couple of model, each row with the values: name of the model first, name of model second, average log-likelihood difference, min 95% interval, max 95% interval.
+
+The log-likelihood difference is loglik(name of the model first) - loglik(name of the model second).
 
 # Extracting features used in the paper
 delta values obtained for the different models can be found in the file DATA/humans_and_models.csv, one column per model with the codenames given in the paper.
@@ -125,4 +142,4 @@ with $Type$ equal to FisherMono, FisherTri or BabelMulti.
 
 ## DPGMM
 
-We use the kaldi toolkit to extract MFCCs and apply the same VTLN than in [1] (the vtln-mfccs can be provided on demand, contact juliette.millet@cri-paris.org), then we  extract the posteriorgrams from the French and English models from [1] we follow the instructions of https://github.com/geomphon/CogSci-2019-Unsupervised-speech-and-human-perception
+We use the kaldi toolkit to extract MFCCs and apply the same VTLN than in [1] (the vtln-mfccs can be provided on demand, contact juliette.millet@cri-paris.org), then we  extract the posteriorgrams from the English model from [1] we follow the instructions of https://github.com/geomphon/CogSci-2019-Unsupervised-speech-and-human-perception
